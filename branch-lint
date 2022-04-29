@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+CURRENT_BRANCH_NAME=$(git branch --show-current)
+BRANCH_REGEX="^(production)|(master)|(((hotfix\/)|(feature\/)|(bugfix\/)|())[A-Z]+-[0-9]+(_[a-z0-9]+)+)$"
+
+if [[ $CURRENT_BRANCH_NAME =~ $BRANCH_REGEX ]]; then
+    echo "Valid branch name"
+else
+    echo "Invalid branch name $CURRENT_BRANCH_NAME"
+    exit 1
+fi
